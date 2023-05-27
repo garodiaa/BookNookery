@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="651" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="62"/>
+	<parameter name="invo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    sales_product. `id` AS slales_product_id,
+    sales_product. `sales_id` AS slales_product_sales_id,
+    sales_product. `book_name` AS slales_product_book_name,
+    sales_product. `price` AS slales_product_price,
+    sales_product. `qty` AS slales_product_qty,
+    sales_product. `total` AS slales_product_total,
+    salestable. `id` AS salestable_id,
+    salestable. `subtotal` AS salestable_subtotal,
+    salestable. `pay` AS salestable_pay,
+    salestable. `balance` AS salestable_balance
+FROM
+   `sales_product` sales_product Inner Join `salestable` salestable ON sales_product. `sales_id` = salestable. `id` where salestable. `id` = $P{invo}]]>
+	</queryString>
+	<field name="slales_product_id" class="java.lang.Integer"/>
+	<field name="slales_product_sales_id" class="java.lang.Integer"/>
+	<field name="slales_product_book_name" class="java.lang.String"/>
+	<field name="slales_product_price" class="java.lang.Integer"/>
+	<field name="slales_product_qty" class="java.lang.Integer"/>
+	<field name="slales_product_total" class="java.lang.Integer"/>
+	<field name="salestable_id" class="java.lang.Integer"/>
+	<field name="salestable_subtotal" class="java.lang.Integer"/>
+	<field name="salestable_pay" class="java.lang.Integer"/>
+	<field name="salestable_balance" class="java.lang.Integer"/>
+	<group name="sales">
+		<groupFooter>
+			<band height="46"/>
+		</groupFooter>
+	</group>
+	<group name="salez">
+		<groupFooter>
+			<band height="57">
+				<textField>
+					<reportElement x="156" y="0" width="30" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{salestable_subtotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="156" y="17" width="30" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{salestable_pay}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="156" y="34" width="30" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{salestable_balance}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="97" y="1" width="57" height="15"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="97" y="18" width="57" height="15"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PAY]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="97" y="34" width="57" height="18"/>
+					<textElement>
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CHANGE]]></text>
+				</staticText>
+				<line>
+					<reportElement x="1" y="51" width="185" height="1"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="95" splitType="Stretch">
+			<staticText>
+				<reportElement x="-19" y="6" width="224" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOOK NOOKERY]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="52" y="70" width="32" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salestable_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="69" width="51" height="15"/>
+				<textElement>
+					<font fontName="Poppins" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice No. :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="142" y="49" width="45" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="HH:mm">
+				<reportElement x="23" y="50" width="72" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="49" width="34" height="18"/>
+				<textElement>
+					<font fontName="Poppins" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIME:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="48" width="30" height="18"/>
+				<textElement>
+					<font fontName="Poppins" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATE:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="89" width="184" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="32" y="26" width="125" height="23"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Poppins" size="7"/>
+				</textElement>
+				<text><![CDATA[221B Baker Street , Dhaka, Bangladesh]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="6" width="52" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BOOK NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="6" width="35" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRICE(৳)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="6" width="33" height="20"/>
+				<textElement textAlignment="Justified">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[QTY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="6" width="43" height="20"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL(৳)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="67" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{slales_product_book_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="0" width="35" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{slales_product_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="0" width="29" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{slales_product_total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="24" width="185" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="115" y="0" width="17" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{slales_product_qty}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="83" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="68" width="186" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Futura Lt BT" size="7" isBold="true" isUnderline="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[developed by devoverflow]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="53" width="186" height="15"/>
+				<textElement textAlignment="Center">
+					<font fontName="Poppins" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thank You Come Again]]></text>
+			</staticText>
+			<image>
+				<reportElement x="71" y="3" width="50" height="50"/>
+				<imageExpression><![CDATA["H:\\`DOF\\qr_code50px.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
